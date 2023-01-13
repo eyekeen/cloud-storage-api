@@ -30,6 +30,8 @@ class AuthController extends Controller
             ], 401);
         }
 
+        
+
         $user = Auth::user();
         return response()->json([
                 'status' => 'success',
@@ -86,6 +88,16 @@ class AuthController extends Controller
                 'type' => 'bearer',
             ]
         ]);
+    }
+
+    public function registerForm()
+    {
+        return view("register");
+    }
+
+    public function loginForm()
+    {
+        return view("login");
     }
 
 }
