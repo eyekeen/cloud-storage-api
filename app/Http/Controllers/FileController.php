@@ -23,12 +23,9 @@ class FileController extends Controller
      */
     public function index()
     {
-        $files = File::all();
-
         return response()->json([
             'status' => 200,
-            'message' => 'Ok',
-            'files' => $files,
+            'message' => 'Ok'
         ]);
     }
 
@@ -40,7 +37,7 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        Storage::disk('local')->put('/files/example.txt', 'Contents');
+        // Storage::disk('local')->put('/files/example.txt', 'Contents');
 
         $user = Auth::user();
 
@@ -63,18 +60,14 @@ class FileController extends Controller
             ]);
         }
 
-        $file = File::create([
-            'title' => $file_name,
-            'ext' => $ext,
-            'size' => $size . ' B',
-        ]);
-
         $request->file('file')->storeAs("files/{$user['id']}/", $file_name);
 
         return response()->json([
+            'user_id' => $user['id'],
             'status' => 200,
             'message' => 'file been save',
-            'file' => $file,
+            'file_name' => $file_name,
+            'size' => $size . ' B'
         ]);
     }
 
