@@ -15,5 +15,11 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(FileController::class)->group(function () {
     Route::get('/files', 'index')->name('index');
+    Route::get('/files/allsize', 'getDiskSize')->name('allsize');
+    Route::get('/files/directorysize', 'getDirectorySize')->name('directorysize');
+    Route::get('/files/{file_name}', 'download')->name('download');
     Route::post('/files', 'store')->name('store');
+    Route::put('/files/{file_name}', 'update')->name('rename');
+    Route::delete('/files/{file_name}', 'destroy')->name('destroy');
+    Route::post('/files/createdirectory', 'createDirectory')->name('createdirectory');
 });
