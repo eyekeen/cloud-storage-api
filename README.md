@@ -1,66 +1,177 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Cloud storage api
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Simple service for uploading, deleting, downloading and updating files.
 
-## About Laravel
+## Requirements
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- docker v20.14 and above
+- docker-compose v2.14 and above
+- php v8.1 and above
+- composer 2.5 and above
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Installation
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+For installation this project need execute the following commands
 
-## Learning Laravel
+```bash
+git clone https://github.com/eyekeen/cloud-storage-api.git
+cd cloud-storage-api
+composer install
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Configuration and run
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+cp .env.example .env
+```
+Start all docker containers
+```bash
+./vendor/bin/sail up
+```
+OR
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Start all of the Docker containers in the background in "detached" mode:
+```bash
+./vendor/bin/sail up -d
+```
+Run migration:
+```bash
+./vendor/bin/sail artisan migrate
+// Or
+php artisan migrate   
+```
 
-## Laravel Sponsors
+Generating jwt token:
+```bash
+./vendor/bin/sail artisan jwt:secret
+// Or
+php artisan jwt:secret  
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## REST API
 
-### Premium Partners
+Launch postman and import [api collection](./cloud_rest_api.postman_collection.json)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Examples.
 
-## Contributing
+## Register
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### Request
+`POST /api/register`
+```
+curl --location --request POST 'localhost/api/register' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: XSRF-TOKEN=<auto gen jwt token>' \
+--data-raw '{
+    "name": "<your name>",
+    "email": "<your email>",
+    "password": "<your password(length >= 6)>"
+}'
+```
 
-## Code of Conduct
+#### Response
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+{
+    "status": "success",
+    "message": "User created successfully",
+    "user": {
+        "name": "<your name>",
+        "email": "<your email>",
+        "updated_at": "2023-01-16T08:19:55.000000Z",
+        "created_at": "2023-01-16T08:19:55.000000Z",
+        "id": <your id>
+    },
+    "authorisation": {
+        "token": "<Your jwt token>",
+        "type": "bearer"
+    }
+}
+```
 
-## Security Vulnerabilities
+## Login
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### Request
+`POST /api/login`
+```
+curl --location --request POST 'localhost/api/login' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: XSRF-TOKEN=<auto gen jwt token>' \
+--data-raw '{
+    "email": "<your email>",
+    "password": "<your password>"
+}'
+```
+
+#### Response
+
+```
+{
+    "status": "success",
+    "user": {
+        "id": <your id>,
+        "name": "<your name>",
+        "email": "<your email>",
+        "email_verified_at": null,
+        "created_at": "2023-01-16T06:39:23.000000Z",
+        "updated_at": "2023-01-16T06:39:23.000000Z"
+    },
+    "authorisation": {
+        "token": "<your token>",
+        "type": "bearer"
+    }
+}
+```
+
+## Logout
+
+#### Request
+`POST /api/logout`
+```
+curl --location --request POST 'localhost/api/logout' \
+--header 'Authorization: Bearer <your jwt token>' \
+--header 'Cookie: XSRF-TOKEN=<auto gen token>'
+```
+
+#### Response
+
+```
+{
+    "status": "success",
+    "message": "Successfully logged out"
+}
+```
+
+## Refresh
+
+#### Request
+`POST /api/refresh`
+```
+curl --location --request POST 'localhost/api/refresh' \
+--header 'Authorization: Bearer <your jwt token>' \
+--header 'Cookie: XSRF-TOKEN=<auto gen token>'
+```
+
+#### Response
+
+```
+{
+    "status": "success",
+    "user": {
+        "id": <your id>,
+        "name": "<your name>",
+        "email": "<your email>",
+        "email_verified_at": null,
+        "created_at": "2023-01-16T06:39:23.000000Z",
+        "updated_at": "2023-01-16T06:39:23.000000Z"
+    },
+    "authorisation": {
+        "token": "<new jwt token>",
+        "type": "bearer"
+    }
+}
+```
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+cloud-storage-api is open-sourced software released under the [MIT License](https://opensource.org/licenses/MIT).

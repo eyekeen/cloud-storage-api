@@ -9,8 +9,8 @@ use App\Http\Controllers\FileController;
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login')->name('login');
     Route::post('register', 'register')->name('register');
-    Route::post('logout', 'logout');
-    Route::post('refresh', 'refresh');
+    Route::post('logout', 'logout')->name('logout');
+    Route::post('refresh', 'refresh')->name('refresh');
 });
 
 Route::controller(FileController::class)->group(function () {
