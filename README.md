@@ -41,18 +41,16 @@ Run migration:
 php artisan migrate   
 ```
 
-Generating jwt token:
+Generating jwt secret key:
 ```bash
 ./vendor/bin/sail artisan jwt:secret
 // Or
 php artisan jwt:secret  
 ```
 
-# REST API
+# API
 
 Launch postman and import [api collection](./cloud_rest_api.postman_collection.json)
-
-Examples.
 
 ## Register
 
@@ -218,6 +216,133 @@ curl --location --request POST 'localhost/api/files' \
 ```
 
 
+## Create directory
+
+#### Request
+`POST /api/files/createdirectory`
+```
+curl --location --request POST 'localhost/api/files/createdirectory' \
+--header 'Authorization: Bearer <your jwt token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "directory_name": "test"
+}'
+```
+
+#### Response
+
+```
+{
+    "status": 200,
+    "message": "the '<directory_name>' directory has been successfully created"
+}
+```
+
+## Rename file
+
+#### Request
+`PUT /api/files/{file name}`
+```
+curl --location --request PUT 'localhost/api/files/{file name with extension}' \
+--header 'Authorization: Bearer <your jwt token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "directory": "<directory_name>",
+    "new_name": "<new file name>"
+}'
+```
+
+#### Response
+
+```
+{
+    "status": 200,
+    "message": "The file has been renamed"
+}
+```
+
+## Delete file
+
+#### Request
+`DELETE /api/files/{file name}`
+```
+curl --location --request DELETE 'localhost/api/files/{file name}' \
+--header 'Authorization: Bearer <your jwt token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "directory": "<directory>" <- optional
+}'
+```
+
+#### Response
+
+```
+{
+    "status": 200,
+    "message": "The file has been removed"
+}
+```
+
+## Get file
+
+#### Request
+`GET /api/files/{file name}`
+```
+curl --location --request GET 'localhost/api/files/{file name}' \
+--header 'Authorization: Bearer <your jwt token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "directory": "" <- optional
+}'
+```
+
+#### Response
+
+```
+{
+    "get file content"
+}
+```
+
+## Get disk size
+
+#### Request
+`GET /api/files/allsize`
+```
+curl --location --request GET 'localhost/api/files/allsize' \
+--header 'Authorization: Bearer <your jwt token>'
+```
+
+#### Response
+
+```
+{
+    "status": 200,
+    "message": "User '<user name>' disk size - <size> B"
+}
+```
+
+## Get directory size
+
+#### Request
+`GET /api/files/directorysize`
+```
+curl --location --request GET 'localhost/api/files/directorysize' \
+--header 'Authorization: Bearer <your jwt token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "directory": "/"
+}'
+```
+
+#### Response
+
+```
+{
+    "status": 200,
+    "message": "User 'test-user' directory '<directory>' size - <size> B"
+}
+```
 
 ## License
 
