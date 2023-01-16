@@ -1,0 +1,361 @@
+{
+	"info": {
+		"_postman_id": "7d1dbdb6-d419-4b0c-9d1d-fbe1860dd878",
+		"name": "cloud_rest_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13400850"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"test-user-2\",\n    \"email\": \"test2@mail.ru\",\n    \"password\": \"root123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/register",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test2@mail.ru\",\n    \"password\": \"root123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/login",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all files",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY3Mzc4NDQ4MiwiZXhwIjoxNjczNzg4MDgyLCJuYmYiOjE2NzM3ODQ0ODIsImp0aSI6ImJlbFBnMlhtSUZ1T1ZLa08iLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.W-ZK6I4MN7mrGbpZfW3iw9hngLhzeQ5vIhPRgj53abc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/files",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload file",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY3Mzc4NDQ4MiwiZXhwIjoxNjczNzg4MDgyLCJuYmYiOjE2NzM3ODQ0ODIsImp0aSI6ImJlbFBnMlhtSUZ1T1ZLa08iLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.W-ZK6I4MN7mrGbpZfW3iw9hngLhzeQ5vIhPRgj53abc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"contentType": "",
+							"type": "file",
+							"src": "/home/tarum/Документы/cloud_rest_api.postman_collection.json"
+						},
+						{
+							"key": "directory",
+							"value": "test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/api/files",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create folder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY3Mzc4NDQ4MiwiZXhwIjoxNjczNzg4MDgyLCJuYmYiOjE2NzM3ODQ0ODIsImp0aSI6ImJlbFBnMlhtSUZ1T1ZLa08iLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.W-ZK6I4MN7mrGbpZfW3iw9hngLhzeQ5vIhPRgj53abc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"directory_name\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/files/createdirectory",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"files",
+						"createdirectory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rename",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY3Mzc4Mzc3MCwiZXhwIjoxNjczNzg3MzcwLCJuYmYiOjE2NzM3ODM3NzAsImp0aSI6IkF1ekhLckl2Vm5UZVRFQWwiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.8rXnYssn7C6kQjK7aAsAGqgccQzE-V3trKF_4pX-V6Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"directory\": \"test2\",\n    \"new_name\": \"test_file5.txt\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/files/test_file3.txt",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"files",
+						"test_file3.txt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete file",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY3Mzc4NDQ4MiwiZXhwIjoxNjczNzg4MDgyLCJuYmYiOjE2NzM3ODQ0ODIsImp0aSI6ImJlbFBnMlhtSUZ1T1ZLa08iLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.W-ZK6I4MN7mrGbpZfW3iw9hngLhzeQ5vIhPRgj53abc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"directory\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/files/cloud_rest_api.postman_collection.json",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"files",
+						"cloud_rest_api.postman_collection.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "download file",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY3Mzc4Mzc3MCwiZXhwIjoxNjczNzg3MzcwLCJuYmYiOjE2NzM3ODM3NzAsImp0aSI6IkF1ekhLckl2Vm5UZVRFQWwiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.8rXnYssn7C6kQjK7aAsAGqgccQzE-V3trKF_4pX-V6Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"directory\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/files/test_file3.txt",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"files",
+						"test_file3.txt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get disk size",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY3Mzc4NDQ4MiwiZXhwIjoxNjczNzg4MDgyLCJuYmYiOjE2NzM3ODQ0ODIsImp0aSI6ImJlbFBnMlhtSUZ1T1ZLa08iLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.W-ZK6I4MN7mrGbpZfW3iw9hngLhzeQ5vIhPRgj53abc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/files/allsize",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"files",
+						"allsize"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get directory size",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY3Mzc4NDQ4MiwiZXhwIjoxNjczNzg4MDgyLCJuYmYiOjE2NzM3ODQ0ODIsImp0aSI6ImJlbFBnMlhtSUZ1T1ZLa08iLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.W-ZK6I4MN7mrGbpZfW3iw9hngLhzeQ5vIhPRgj53abc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"directory\": \"/\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/files/directorysize",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"files",
+						"directorysize"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
