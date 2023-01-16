@@ -48,7 +48,7 @@ Generating jwt token:
 php artisan jwt:secret  
 ```
 
-## REST API
+# REST API
 
 Launch postman and import [api collection](./cloud_rest_api.postman_collection.json)
 
@@ -171,6 +171,53 @@ curl --location --request POST 'localhost/api/refresh' \
     }
 }
 ```
+
+
+## Get all files
+
+#### Request
+`GET /api/files`
+```
+curl --location --request GET 'localhost/api/files' \
+--header 'Authorization: Bearer <your jwt token>' \
+--header 'Cookie: XSRF-TOKEN=<auto gen token>'
+```
+
+#### Response
+
+```
+{
+    "status": 200,
+    "message": "Ok",
+    "files": [<files and directory list>]
+}
+```
+
+## Upload file
+
+#### Request
+`POST /api/files`
+```
+curl --location --request POST 'localhost/api/files' \
+--header 'Authorization: Bearer <your jwt token>' \
+--header 'Cookie: XSRF-TOKEN=<auto gen token>' \
+--form 'file=@"/test_file.txt"' \
+--form 'directory="test"' <- optional
+```
+
+#### Response
+
+```
+{
+    "user_id": <auth user id>,
+    "status": 200,
+    "message": "file been save",
+    "file_name": "<upload file name>",
+    "size": "<file size>"
+}
+```
+
+
 
 ## License
 
