@@ -16,7 +16,7 @@ For installation this project need execute the following commands
 ```bash
 git clone https://github.com/eyekeen/cloud-storage-api.git
 cd cloud-storage-api
-composer install
+php composer.phar install
 ```
 
 ## Configuration and run
