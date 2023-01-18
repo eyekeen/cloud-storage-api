@@ -4,9 +4,9 @@ Simple service for uploading, deleting, downloading and updating files.
 
 ## Requirements
 
-- docker v20.14 and above
-- docker-compose v2.14 and above
-- php v8.1 and above
+- docker v20.10 and above
+- docker-compose v1.28 and above
+- php v7.4
 - composer 2.5 and above
 
 ## Installation
