@@ -50,8 +50,8 @@ php artisan jwt:secret
 
 Get permision
 ```bash
-- cd ..
-- chmod 777 cloud-storage-api -R
+cd ..
+chmod 777 cloud-storage-api -R
 ```
 
 # API
