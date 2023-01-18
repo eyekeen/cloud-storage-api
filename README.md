@@ -56,7 +56,7 @@ chmod 777 cloud-storage-api -R
 
 # API
 
-Available at this adress: http://84.38.183.114
+Available at this adress: http://84.38.183.114 \
 Launch postman and import [api collection](./cloud_rest_api.postman_collection.json)
 
 ## Register
