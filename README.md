@@ -43,8 +43,6 @@ php artisan migrate
 
 Generating jwt secret key:
 ```bash
-./vendor/bin/sail artisan jwt:secret
-// Or
 php artisan jwt:secret  
 ```
 
