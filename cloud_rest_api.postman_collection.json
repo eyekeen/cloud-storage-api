@@ -1,0 +1,421 @@
+{
+	"info": {
+		"_postman_id": "ce93f1a2-ec13-4445-b5ae-3f13712dd351",
+		"name": "cloud_rest_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"test-user\",\n    \"email\": \"test@mail.ru\",\n    \"password\": \"root123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/register",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				},
+				"description": "register user"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test@mail.ru\",\n    \"password\": \"root123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/login",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "login user and get token"
+			},
+			"response": []
+		},
+		{
+			"name": "get all files",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY4MjUyNTkyNywiZXhwIjoxNjgyNTI5NTI3LCJuYmYiOjE2ODI1MjU5MjcsImp0aSI6IlZES1NIN2lQbEtMVzNUWVoiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.cu9mVAbFelPTTvvZFqaG9Ml-MgAdAOn8LDVOxItFrlk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/files",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"files"
+					]
+				},
+				"description": "get all files in user disk"
+			},
+			"response": []
+		},
+		{
+			"name": "upload file",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY3Mzg1OTE4NywiZXhwIjoxNjczODYyNzg3LCJuYmYiOjE2NzM4NTkxODcsImp0aSI6IlJmUXBxWXRiRXRsZWpuNGMiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.chgQSNEd-0VW8IZvJfNjqBbb9lhHLfIlwG-ahgyOzsA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"contentType": "",
+							"type": "file",
+							"src": "/home/tarum/Documents/test_file.txt"
+						},
+						{
+							"key": "directory",
+							"value": "test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/api/files",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"files"
+					]
+				},
+				"description": "upload file in disk(folder param is optional)"
+			},
+			"response": []
+		},
+		{
+			"name": "create folder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY4MjUyNTkyNywiZXhwIjoxNjgyNTI5NTI3LCJuYmYiOjE2ODI1MjU5MjcsImp0aSI6IlZES1NIN2lQbEtMVzNUWVoiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.cu9mVAbFelPTTvvZFqaG9Ml-MgAdAOn8LDVOxItFrlk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"directory_name\": \"test2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/files/createdirectory",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"files",
+						"createdirectory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rename",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY3Mzg2NjIwOSwiZXhwIjoxNjczODY5ODA5LCJuYmYiOjE2NzM4NjYyMDksImp0aSI6IlVFMTBZbkdkNGNlRXVGVkMiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.5yEHzu37f0act3eRY7YWeCfBt8tU4Ewol_8tJAawemU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"directory\": \"\",\n    \"new_name\": \"test_file5\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/files/test_file.txt",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"files",
+						"test_file.txt"
+					]
+				},
+				"description": "rename file"
+			},
+			"response": []
+		},
+		{
+			"name": "delete file",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY3Mzg2NjIwOSwiZXhwIjoxNjczODY5ODA5LCJuYmYiOjE2NzM4NjYyMDksImp0aSI6IlVFMTBZbkdkNGNlRXVGVkMiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.5yEHzu37f0act3eRY7YWeCfBt8tU4Ewol_8tJAawemU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"directory\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/files/test_file5",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"files",
+						"test_file5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "download file",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY3Mzg2NjIwOSwiZXhwIjoxNjczODY5ODA5LCJuYmYiOjE2NzM4NjYyMDksImp0aSI6IlVFMTBZbkdkNGNlRXVGVkMiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.5yEHzu37f0act3eRY7YWeCfBt8tU4Ewol_8tJAawemU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"directory\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/files/test_file.txt",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"files",
+						"test_file.txt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get disk size",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY4MjUyNTkyNywiZXhwIjoxNjgyNTI5NTI3LCJuYmYiOjE2ODI1MjU5MjcsImp0aSI6IlZES1NIN2lQbEtMVzNUWVoiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.cu9mVAbFelPTTvvZFqaG9Ml-MgAdAOn8LDVOxItFrlk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/files/allsize",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"files",
+						"allsize"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get directory size",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY3Mzg2NjIwOSwiZXhwIjoxNjczODY5ODA5LCJuYmYiOjE2NzM4NjYyMDksImp0aSI6IlVFMTBZbkdkNGNlRXVGVkMiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.5yEHzu37f0act3eRY7YWeCfBt8tU4Ewol_8tJAawemU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"directory\": \"/\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/files/directorysize",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"files",
+						"directorysize"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY4MjUyNTkyNywiZXhwIjoxNjgyNTI5NTI3LCJuYmYiOjE2ODI1MjU5MjcsImp0aSI6IlZES1NIN2lQbEtMVzNUWVoiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.cu9mVAbFelPTTvvZFqaG9Ml-MgAdAOn8LDVOxItFrlk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/logout",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refresh",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY3Mzg1ODM0NywiZXhwIjoxNjczODYxOTQ3LCJuYmYiOjE2NzM4NTgzNDcsImp0aSI6IkdQVlpMbmhnMURvb3pVNHAiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.C_x4QriwythONThjupZ_hLVxHjcouTuIqyzQNtFuJ_s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/refresh",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
